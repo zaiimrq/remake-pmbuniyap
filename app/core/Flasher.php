@@ -26,10 +26,8 @@ class Flasher
         }
     }
 
-    public static function setSession($value) 
+    public static function setSession($key, $value) 
     {
-        $_SESSION['auth'] = [
-            'login' => $value
-        ];
+        $_SESSION[$key] = $value;
     }
 }

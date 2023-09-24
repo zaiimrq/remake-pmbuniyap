@@ -65,7 +65,7 @@ class Cama_model
  
         if ($this->db->getRow() > 0) {
             if (password_verify($data['password'], $credential['password'])) {
-                Flasher::setSession($credential['nisn']);
+                Flasher::setSession('login', $credential['nisn']);
                 return $this->db->getRow();
             }
         }
@@ -73,7 +73,7 @@ class Cama_model
 
     public function getCama($nisn)
     {
-        $query = "SELECT cama.*, pendaftaran.no_pendaftar, jadwal_pendaftaran.*, prog_studi.*, dokumen.* FROM cama JOIN pendaftaran ON pendaftaran.nisn = cama.nisn JOIN jadwal_pendaftaran ON jadwal_pendaftaran.id_jadwal=:id_jadwal LEFT JOIN prog_studi ON cama.kode_prodi = prog_studi.kode_prodi JOIN dokumen ON dokumen.nisn = cama.nisn WHERE cama.nisn = :nisn";
+        $query = "SELECT cama.*, pendaftaran.no_pendaftar, jadwal_pendaftaran.*, prog_studi.* FROM cama JOIN pendaftaran ON pendaftaran.nisn = cama.nisn JOIN jadwal_pendaftaran ON jadwal_pendaftaran.id_jadwal=:id_jadwal LEFT JOIN prog_studi ON cama.kode_prodi = prog_studi.kode_prodi WHERE cama.nisn = :nisn";
 
         $this->db->query($query);
         $this->db->bind('nisn', $nisn);
@@ -126,6 +126,21 @@ class Cama_model
             return 'not';
         }
         // var_dump($data[0]['dokumen']['name']);
+    }
+
+
+    public function pengumuman($nisn)
+    {
+        $this->db->query("SELECT hasil_seleksi FROM cama WHERE nisn=$nisn");
+        $hasil = $this->db->get();
+        if (is_null($hasil['hasil_seleksi'])) {
+            return "not";
+        } else {
+            $query = "SELECT cama.nisn, cama.nama, cama.hasil_seleksi, pendaftaran.no_pendaftar, prog_studi.prodi FROM cama JOIN pendaftaran ON cama.nisn=pendaftaran.nisn LEFT JOIN prog_studi ON cama.kode_prodi=prog_studi.kode_prodi WHERE cama.nisn=:nisn";
+            $this->db->query($query);
+            $this->db->bind('nisn', $nisn);
+            return $this->db->get();
+        }
     }
 
 }

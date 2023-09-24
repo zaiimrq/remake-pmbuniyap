@@ -41,46 +41,5 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   <script src="<?= BASEURL ?>/dist/js/bootstrap.min.js"></script>
-  <script type="text/javascript">
-    var typed = new Typed('#element', {
-      strings: ['Selamat Datang <br> di UNIYAP','Penerimaan <br> Mahasiswa Baru'],
-      typeSpeed: 100,
-      backSpeed: 50,
-      backDelay: 1000,
-      loop: true
-    });
-  </script>
-
-  <script>
-    function showForm(formId) {
-        if (formId === 'loginForm') {
-            document.getElementById('loginForm').style.display = 'block';
-            document.getElementById('registerForm').style.display = 'none';
-        } else if (formId === 'registerForm') {
-            document.getElementById('registerForm').style.display = 'block';
-            document.getElementById('loginForm').style.display = 'none';
-        }
-    }
-
-
-function generateNoPendaftaran() {
-    var currentDate = new Date();
-    var year = currentDate.getFullYear().toString();
-    var randomDigits = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
-
-    var noPendaftaran = year + randomDigits;
-    return noPendaftaran;
-}
-
-// Setel nilai nomor pendaftaran saat halaman dimuat
-window.onload = function() {
-    var noPendaftaranInput = document.getElementById('noPendaftaran');
-    noPendaftaranInput.value = generateNoPendaftaran();
-    showForm('loginForm');
-
-};
-
-
-  </script>
 </body>
 </html>

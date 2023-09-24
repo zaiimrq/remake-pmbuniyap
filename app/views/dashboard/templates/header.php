@@ -269,6 +269,11 @@
 
     }
 
+    <?php if ($_SERVER['REQUEST_URI'] == "/public/dashboard/index/". $data['cama']['nisn']): ?>
+      .navbar-nav .nav-item:first-child .nav-link {
+        color: yellow;
+      }
+    <?php endif ?>
 
   </style>
   </head>

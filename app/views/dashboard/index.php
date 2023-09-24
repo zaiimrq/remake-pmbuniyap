@@ -4,7 +4,7 @@
 
   <div class="container">
     <div class="card-box" style="margin-top: 10rem;">
-      <div class="col-md-10">
+      <div class="col-md-12">
         <?php Flasher::flash('home') ?? Flasher::flash('dashboard') ?>
       </div>
       <div class="card-body bg-warning shadow p-0">
@@ -144,7 +144,7 @@
     </div>
 
     <!-- modal upload -->
-
+    
     <div class="modal fade" id="uploaddoc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -153,10 +153,15 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
+            <small><i class="fw-md text-danger mb-3 d-block">Note : Upload Dokumen hanya dapat dilakukan satu kali, pastikan dokumen yang anda upload adalah benar !</i></small>
+            
             <form action="<?= BASEURL ?>/dashboard/upload/<?= $data['cama']['nisn'] ?>" method="post" enctype="multipart/form-data">
-            <label>Upload dokumen</label>
-              <div class="form-floating mb-3">
-                  <input type="file" accept=".pdf" class="form-control" name="dokumen" required id="dokumen" value="<?= $data['cama']['dokumen']; ?>">
+              <div class="form-floating" style="height: 400px; display: none;" id="prevParent">
+                <embed frameborder="0" id="prev" class="w-100 h-100"></embed>
+              </div>
+              <label>Upload dokumen</label>
+              <div class="form-floating">
+                <input type="file" accept=".pdf" class="form-control" name="dokumen"  id="dokumen" onchange="preview()">
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -190,4 +195,18 @@
     </div>
   </div>
 
+  <script>
+    function preview(){
+      let doc = document.getElementById('dokumen');
+      let prev = document.getElementById('prev');
+      let parent = document.getElementById('prevParent');
+      let reader = new FileReader();
+
+      parent.style.display = "block";
+      reader.readAsDataURL(doc.files[0]);
+      reader.onload =function(e) {
+        prev.src = e.target.result;
+      }
+    }
+  </script>
 

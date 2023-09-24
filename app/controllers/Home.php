@@ -47,7 +47,7 @@ class Home extends Controller
         // $this->model('Cama_model')->login($_POST);
 
         if ($this->model('Cama_model')->login($_POST) > 0) {
-            header('Location: '. BASEURL .'/dashboard/index/'. $_SESSION['auth']['login']);
+            header('Location: '. BASEURL .'/dashboard/index/'. $_SESSION['login']);
             Flasher::setFlash('Berhasil Login', 'Silahkan lengkapi data diri anda!', 'success', 'home');
             exit;
         } else {

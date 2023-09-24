@@ -13,18 +13,18 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="<?= BASEURL ?>/dashboard/index/<?= $_SESSION['auth']['login'] ?>">Dashboard</a>
+                <a class="nav-link" href="<?= BASEURL ?>/dashboard/">Dashboard</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="<?= BASEURL ?>/home/prodi">Program Studi</a>
               </li>
-              <li class="nav-item mr-3">
-                <a class="nav-link" href="<?= BASEURL ?>/dashboard/pengumuman">Pengumuman</a>
+              <li class="nav-item">
+                <a class="nav-link" href="<?= BASEURL ?>/dashboard/pengumuman/">Pengumuman</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="<?= BASEURL ?>/dashboard/logout" onclick="return confirm('Apakah Anda yakin ingin logout?')"><i class="fas fa-sign-out-alt fa-lg"></i> Logout</a>
               </li>
-            </ul>
+          </ul>
     </div>
 </nav>
 

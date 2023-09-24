@@ -13,8 +13,8 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-          <?php if (!(isset($_SESSION['auth']['login']))): ?>
-            <a class="nav-link" href="<?= BASEURL ?>/">Pendaftaran</a>
+          <?php if (!(isset($_SESSION['login']))): ?>
+            <a class="nav-link" href="<?= BASEURL ?>/">Home</a>
           <?php else : ?>
             <a class="nav-link" href="<?= BASEURL ?>/dashboard">Dashboard</a>
           <?php endif; ?>
@@ -22,9 +22,16 @@
           <li class="nav-item">
             <a class="nav-link" href="<?= BASEURL ?>/home/prodi">Program Studi</a>
           </li>
+          <?php if (isset($_SESSION['login'])) :?>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= BASEURL ?>/dashboard/pengumuman">Pengumuman</a>
+            </li>
+          <?php endif; ?>
           <li class="nav-item">
-            <?php if (!(isset($_SESSION['auth']['login']))):?>
-              <a class="nav-link" href="#agenda">Agenda</a>
+            <?php if (!(isset($_SESSION['login']))):?>
+              <a class="nav-link" href="<?= BASEURL ?>/#agenda">Agenda</a>
+            <?php else :?>
+              <a class="nav-link" href="<?= BASEURL ?>/dashboard/logout" onclick="return confirm('Apakah Anda yakin ingin logout?')"><i class="fas fa-sign-out-alt fa-lg"></i> Logout</a>
             <?php endif; ?>
           </li>
         </ul>

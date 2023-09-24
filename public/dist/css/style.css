@@ -171,7 +171,6 @@ font-family: 'Open Sans', sans-serif;
 
 .navbar-nav .nav-link:hover {
   color: yellow;
-  /* Warna latar belakang ketika dihover */
 }
 .nav-link {
   position: relative;

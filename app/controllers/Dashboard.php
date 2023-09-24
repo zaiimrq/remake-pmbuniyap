@@ -6,12 +6,12 @@ class Dashboard extends Controller
     public function index($nopen = [])
     {
 
-        if (!isset($_SESSION['auth']['login'])) {
+        if (!isset($_SESSION['login'])) {
             header('Location: '. BASEURL .'/');
             exit;
         }
 
-        if ($_SESSION['auth']['login'] == $nopen) {    
+        if ($_SESSION['login'] == $nopen) {    
             $cama = $this->model('Cama_model')->getCama($nopen);
             $prodi = $this->model('Cama_model')->getProdi();
             
@@ -23,12 +23,12 @@ class Dashboard extends Controller
     
             // var_dump($data);
     
-            $this->view('dashboard/templates/header');
+            $this->view('dashboard/templates/header', $data);
             $this->view('dashboard/index',  $data);
-            $this->view('home/templates/footer');
+            $this->view('dashboard/templates/footer');
         } else {
-            if (isset($_SESSION['auth']['login'])) {
-                header('Location:'. BASEURL .'/dashboard/index/'. $_SESSION['auth']['login']);
+            if (isset($_SESSION['login'])) {
+                header('Location:'. BASEURL .'/dashboard/index/'. $_SESSION['login']);
                 exit;
             }
         }
@@ -38,7 +38,7 @@ class Dashboard extends Controller
 
     public function logout()
     {
-        unset($_SESSION['auth']['login']);
+        unset($_SESSION['login']);
         session_unset();
         session_destroy();
         header('Location: '. BASEURL .'/');
@@ -72,8 +72,8 @@ class Dashboard extends Controller
     {
         // $this->model('Cama_model')->upload([$_FILES, $nisn]);
         // var_dump($_FILES);
-        if (isset($_FILES)) {
-            if ($_FILES['error'] == 4) {
+        if (isset($_FILES['dokumen'])) {
+            if ($_FILES['dokumen']['error'] == 4) {
                 Flasher::setFlash('Perhatian,', 'Pastikan Anda Telah Memilih Dokumen !', 'warning', 'dashboard');
                 header('Location: '. BASEURL .'/dashboard');
                 exit;
@@ -100,5 +100,21 @@ class Dashboard extends Controller
 
 
         }
+    }
+
+    public function pengumuman()
+    {
+        // var_dump($_SERVER['REQUEST_URI']);
+        $data = $this->model('Cama_model')->pengumuman($_SESSION['login']);
+        // var_dump($data);
+        if ($data == "not") {
+            Flasher::setFlash('Perhatian', 'Data Sedang Di Validasi Cek Kembali Pada Tanggal 01 Oktober 2023', 'warning', 'dashboard');
+            header('Location: '. BASEURL .'/dashboard');
+            exit;
+        }
+
+        $this->view('dashboard/templates/header');
+        $this->view('dashboard/pengumuman', $data);
+        $this->view('home/templates/footer');
     }
 }
