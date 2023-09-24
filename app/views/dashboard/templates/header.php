@@ -11,9 +11,10 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
    <!-- Link CSS Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-*" crossorigin="anonymous" />
-
+  <link rel="stylesheet" href="<?= BASEURL ?>/dist/css/bootstrap.min.css">
   <!-- Link JavaScript Font Awesome (jika diperlukan) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-*" crossorigin="anonymous"></script>
+
   <style>
 
     :root {

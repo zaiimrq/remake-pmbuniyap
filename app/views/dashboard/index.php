@@ -3,89 +3,85 @@
 
 
   <div class="container">
-    
-    <div class="card-box">
-      <div class="card-body bg-warning shadow font-weight-bold">
-        Selamat Datang <?= $data['nama']; ?> dengan No Pendaftaran <?= $data['no_pendaftar']; ?> sampai pada tahap
+    <div class="card-box" style="margin-top: 10rem;">
+      <div class="col-md-10">
+        <?php Flasher::flash('home') ?? Flasher::flash('dashboard') ?>
+      </div>
+      <div class="card-body bg-warning shadow p-0">
+        <marquee style="font-size: 2rem;" hspace="5%" scrollamount="10px">Selamat Datang, <strong><?= $data['cama']['nama']; ?></strong> dengan No Pendaftaran <strong><?= $data['cama']['no_pendaftar']; ?></strong> sampai pada tahap <strong><?= $data['cama']['agenda'] ?></strong></marquee>
       </div>
     </div>
 
     <br><br>
     <div class="card col-md-12">
-      <div class="card-header">
-        Data Diri :
-      </div>
+      <div class="card-header">Data Diri :</div>
       <div class="card-body">
-        <form action="" method="POST">
           <div class="row mb-3">
             <label for="nisn" class="col-sm-2 col-form-label">NISN</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control field" name="nisn" value=": <?php echo($data['nisn']) ?>" readonly>
+              <input type="text" class="form-control field border" name="nisn" value="<?php echo($data['cama']['nisn']) ?>" readonly>
             </div>
           </div>
           
           <div class="row mb-3">
             <label for="no_pendaftar" class="col-sm-2 col-form-label">No Pendaftaran</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control field" name="no_pendaftar" value=": <?php echo($data['no_pendaftar']) ?>" readonly>
+              <input type="text" class="form-control field border" name="no_pendaftar" value="<?php echo($data['cama']['no_pendaftar']) ?>" readonly>
             </div>
           </div>
 
           <div class="row mb-3">
             <label for="nama" class="col-sm-2 col-form-label">Nama</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control field" name="nama" value=": <?php echo($data['nama']) ?>" readonly>
+              <input type="text" class="form-control field border" name="nama" value="<?php echo($data['cama']['nama']) ?>" readonly>
             </div>
           </div>
 
           <div class="row mb-3">
             <label for="email" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control field" name="email" value=": <?php echo($data['email']) ?>" readonly>
+              <input type="text" class="form-control field border" name="email" value="<?php echo($data['cama']['email']) ?>" readonly>
             </div>
           </div>
 
            <div class="row mb-3">
             <label for="email" class="col-sm-2 col-form-label">No Telepon</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control field" name="no_hp" value=": <?php echo($data['no_hp']) ?>" readonly>
+              <input type="text" class="form-control field border" name="no_hp" value="<?php echo($data['cama']['no_hp']) ?>" readonly>
             </div>
           </div>
 
           <div class="row mb-3">
             <label for="text" class="col-sm-2 col-form-label">Tahun Lulus</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control field" name="thn_lulus" value=": <?php echo($data['thn_lulus']) ?>" readonly>
+              <input type="text" class="form-control field border" name="thn_lulus" value="<?php echo($data['cama']['thn_lulus']) ?>" readonly>
             </div>
           </div>
 
           <div class="row mb-3">
             <label for="text" class="col-sm-2 col-form-label">Asal Sekolah</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control field" name="asal_sekolah" value=": <?php echo($data['asal_sekolah']) ?>" readonly>
+              <input type="text" class="form-control field border" name="asal_sekolah" value="<?php echo($data['cama']['asal_sekolah']) ?>" readonly>
             </div>
           </div>
 
-          <!-- <div class="row mb-3">
+          <div class="row mb-3">
             <label for="text" class="col-sm-2 col-form-label">Program Studi Pilihan</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control field" name="jalur_masuk" value=": <?= $data['prodi'];?>" readonly>
+              <input type="text" class="form-control field border" name="prodi" value="<?= $data['cama']['prodi'];?>" readonly>
             </div>
-          </div> -->
+          </div>
 
           <div class="row mb-3">
             <label for="text" class="col-sm-2 col-form-label">Jalur Seleksi</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control field" name="jalur_masuk" value=": <?php echo($data['jalur_masuk']) ?>" readonly>
+              <input type="text" class="form-control field border" name="jalur_masuk" value="<?php echo($data['cama']['jalur_masuk']) ?>" readonly>
             </div>
           </div>
-
-
-        </form>
       </div>
     </div>
 
-     <!-- Modal -->
+     <!-- Modal tambah-->
     <div class="modal fade" id="addSM" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -94,150 +90,80 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg" style="font-size: 1.5rem;"></i></button>
           </div>
           <div class="modal-body">
-
-
-          <form action="" method="POST" >
-
-            <label>NISN</label>
-             <div class="form-floating mb-3">
-                 <input type="text" class="form-control" name="nisn" required id="nisn" value="<?= $data['nisn']; ?>" readonly>
-             </div>
-
-             <label>Nama</label>
-             <div class="form-floating mb-3">
-                 <input type="text" class="form-control" name="nama" required id="nama" value="<?= $data['nama']; ?>" readonly>
-             </div>
-
+            <small><i class="fw-md text-danger mb-3 d-block">Note : Data diri hanya dapat dilakukan satu kali, harap isi data dengan benar !</i></small>
+            <form action="<?= BASEURL ?>/dashboard/formulir" method="POST" id="formModal">
+              <label>NISN</label>
+              <div class="form-floating mb-3">
+                  <input type="text" class="form-control" name="nisn" required id="nisn" value="<?= $data['cama']['nisn']; ?>" readonly>
+              </div>
+              <label>Nama</label>
+              <div class="form-floating mb-3">
+                  <input type="text" class="form-control" name="nama" required id="nama" value="<?= $data['cama']['nama']; ?>" readonly>
+              </div>
               <label>No Tlp</label>
-             <div class="form-floating mb-3">
-                 <input type="text" class="form-control" name="tlp" required id="tlp" autocomplete="off">
-             </div>
-
+              <div class="form-floating mb-3">
+                  <input type="text" class="form-control" name="tlp" required id="tlp" value="<?= $data['cama']['no_hp'] ?>" autocomplete="off">
+              </div>
               <label>Email</label>
-             <div class="form-floating mb-3">
-                 <input type="email" class="form-control" name="email" required id="email" value="<?= $data['email']; ?>" readonly>
-             </div>
-
-            <label>Tahun Lulus</label>
-            <div class="form-floating mb-3">
-               <input type="number" class="form-control" name="thn_lulus" id="thn_lulus" min="2012" max="2023"  required>
-           </div>
-
-           <label for="jalur">Jalur Masuk</label>
-                  <select name="jalur" class="form-control">
+              <div class="form-floating mb-3">
+                  <input type="email" class="form-control" name="email" required id="email" value="<?= $data['cama']['email']; ?>" readonly>
+              </div>
+              <label>Tahun Lulus</label>
+              <div class="form-floating mb-3">
+                <input type="number" min="2015" max="2025" step="1" class="form-control" name="thn_lulus" id="thn_lulus" value="<?= $data['cama']['thn_lulus'] ?>" required>
+              </div>
+            <label for="jalur">Jalur Masuk</label>
+                  <select name="jalur_masuk" class="form-control" id="jalur">
                     <option value="Mandiri">Mandiri</option>
                     <option value="Undangan">Undangan</option>
+                  </select>
+                  <br>
+              <label for="prodi">Program Studi Pilihan</label>
+                <select name="prodi" class="form-control">
+                  <?php foreach($data['prodi'] as $prodi): ?>
+                    <option value="<?= $prodi['kode_prodi'] ?>"><?= $prodi['prodi'] ?></option>
+                  <?php endforeach; ?>
                 </select>
-                <br>
+                  <br>
 
-            <label for="prodi">Program Studi Pilihan</label>
-                  <select name="prodi" class="form-control">
-    
-                </select>
-                <br>
+              <label>Asal Sekolah</label>
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" name="asal_sekolah" value="<?= $data['cama']['asal_sekolah'] ?>" required id="asal" autocomplete="off">
+                </div>
 
-          <label>Asal Sekolah</label>
-             <div class="form-floating mb-3">
-                 <input type="text" class="form-control" name="asal" required id="asal" autocomplete="off">
-             </div>
+              <br> 
 
-            <br> 
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" style="width: 100px; float: left;" class="btn btn-success" name="formulir">Submit</button>
-            </div>
-
-            
-          </form>
-    
-          </div>
-          
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" style="width: 100px; float: left;" class="btn btn-success">Submit</button>
+              </div>   
+            </form>
+          </div>         
         </div>
       </div>
     </div>
 
-            <?php 
+    <!-- modal upload -->
 
-              if (isset($_POST['upload'])) {
-                if (isset($_FILES['dok'])) {
-                  $nisn = $row['nisn'];
-                  $nama = $row['nama'];
-                  $dokName = $_FILES['dok']['name'];
-                  $dokTmp = $_FILES['dok']['tmp_name'];
-
-              
-                  $dokEx = explode('.', $dokName);
-                  $dokEx = end($dokEx);
-                  $dokName = $nisn.'-'.$nama.'.'.$dokEx;
-
-
-
-                  if ($_FILES['dok']['error'] === 0) {
-                    if ($dokEx === 'pdf') {
-                      
-
-
-                      $query = "SELECT nisn FROM dokumen WHERE nisn='$nisn'";
-                      $result = mysqli_query($conn, $query);
-
-                      if (mysqli_num_rows($result) > 0) {
-                          $query = "UPDATE dokumen SET dokumen='$dokName' WHERE nisn='$nisn'";
-                          mysqli_query($conn, $query);
-                          move_uploaded_file($dokTmp, './doc/'.$dokName);
-
-                      } else {
-                        
-                          $query = "INSERT INTO dokumen VALUES ('','$nisn','$dokName')";
-                          mysqli_query($conn, $query);
-                          move_uploaded_file($dokTmp, './doc/'.$dokName);
-
-                      }
-                  } else {
-                    echo "
-                          <script>
-                                alert('Dokumen Yang Anda Pilih Bukan Pdf !');
-                          </script>
-
-                    ";  
-                  }
-                }
-              }
-            }
-
-             ?>
-
-
-     <!-- Modal -->
     <div class="modal fade" id="uploaddoc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Upload Dokumen PMB UNIYAP 2023</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg" style="font-size: 1.5rem;"></i></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-
-
-          <form action="" method="POST" enctype="multipart/form-data">
-
-            <label>Unggahlah Scan Ijazah atau Surat Keterangan Lulus(SKL) Anda dengan format .pdf. <br><br></label>
-             <div class="form-floating mb-3">
-                 <input type="file" class="form-control" name="dok" required id="doc">
-             </div>
-
-            <br> 
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" style="width: 100px; float: left;" class="btn btn-warning" name="upload">Upload</button>
-            </div>
-
-            
-          </form>
-    
-          </div>
-          
+            <form action="<?= BASEURL ?>/dashboard/upload/<?= $data['cama']['nisn'] ?>" method="post" enctype="multipart/form-data">
+            <label>Upload dokumen</label>
+              <div class="form-floating mb-3">
+                  <input type="file" accept=".pdf" class="form-control" name="dokumen" required id="dokumen" value="<?= $data['cama']['dokumen']; ?>">
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" style="width: 100px; float: left;" class="btn btn-success">Submit</button>
+              </div> 
+            </form>
+          </div> 
         </div>
       </div>
     </div>
@@ -262,6 +188,6 @@
         </div>
       </div>
     </div>
-
   </div>
+
 

@@ -3,26 +3,26 @@
 
 class Flasher
 {
-    public static function setFlash($status, $message, $style)
+    public static function setFlash($status, $message, $style, $type)
     {
-        $_SESSION['flash'] = [
+        $_SESSION['flash'][$type] = [
             "status" => $status,
             "message" => $message,
             "style" => $style
         ];
     }
 
-    public static function flash()
+    public static function flash($type)
     {
-        if (isset($_SESSION['flash'])) {
+        if (isset($_SESSION['flash'][$type])) {
             echo '
-                <div class="alert alert-'. $_SESSION['flash']['style'] .' alert-dismissible fade show" role="alert">
-                    <strong>'. $_SESSION['flash']['status'] .'</strong> '. $_SESSION['flash']['message'] .'
+                <div class="alert alert-'. $_SESSION['flash'][$type]['style'] .' alert-dismissible fade show" role="alert">
+                    <strong>'. $_SESSION['flash'][$type]['status'] .'</strong> '. $_SESSION['flash'][$type]['message'] .'
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             ';
 
-            unset($_SESSION['flash']);
+            unset($_SESSION['flash'][$type]);
         }
     }
 

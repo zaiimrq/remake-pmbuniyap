@@ -13,13 +13,19 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
+          <?php if (!(isset($_SESSION['auth']['login']))): ?>
             <a class="nav-link" href="<?= BASEURL ?>/">Pendaftaran</a>
+          <?php else : ?>
+            <a class="nav-link" href="<?= BASEURL ?>/dashboard">Dashboard</a>
+          <?php endif; ?>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?= BASEURL ?>/home/prodi">Program Studi</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#agenda">Agenda</a>
+            <?php if (!(isset($_SESSION['auth']['login']))):?>
+              <a class="nav-link" href="#agenda">Agenda</a>
+            <?php endif; ?>
           </li>
         </ul>
       </div>

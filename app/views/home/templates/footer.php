@@ -82,46 +82,6 @@ window.onload = function() {
 
 
 </script>
-<script>
-  $(function() {
-    $('#uploaddoc').on('shown.bs.modal', function() {
-      $(this).find('input:first').focus();
-    });
-
-    $('#btnupload').click(function() {
-      $('#uploaddoc').modal('show');
-    });
-
-    $('.btn.btn-secondary').click(function() {
-      $('#uploaddoc').modal('hide');
-    });
-
-    $('.btn-close').click(function() {
-      $('#uploaddoc').modal('hide');
-    });
-
-    $('.btn-close').click(function() {
-      $('#addSM').modal('hide');
-    });
-  });
-</script>
-
-<script>
-  $(document).ready(function() {
-    $('#addSM').on('shown.bs.modal', function() {
-      $(this).find('input:first').focus();
-    });
-
-    $('#tambahDataBtn').click(function() {
-      $('#addSM').modal('show');
-      console.log('test');
-    });
-
-    $('.btn.btn-secondary').click(function() {
-      $('#addSM').modal('hide');
-    });
-  });
-</script>
 
 </body>
 </html>

@@ -15,6 +15,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="<?= BASEURL ?>/dashboard/index/<?= $_SESSION['auth']['login'] ?>">Dashboard</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<?= BASEURL ?>/home/prodi">Program Studi</a>
+              </li>
               <li class="nav-item mr-3">
                 <a class="nav-link" href="<?= BASEURL ?>/dashboard/pengumuman">Pengumuman</a>
               </li>
