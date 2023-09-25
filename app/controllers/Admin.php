@@ -44,7 +44,33 @@ class Admin extends Controller
 
     public function index()
     {
-        echo "ok";
+        if (!(isset($_SESSION['auth']))) {
+            unset($_SESSION['auth']);
+            header('Location:'. BASEURL .'/');
+            exit;
+        }
+
+        $data['cama'] = $this->model('Admin_model')->getAllMahasiswa();
+        $data['prodi'] = $this->model('Cama_model')->getProdi();
+
+        $this->view('admin/dashboard/templates/header');
+        $this->view('admin/dashboard/index', $data);
+        $this->view('admin/dashboard/templates/footer');
+    }
+
+    public function tambah()
+    {
+        $this->model('Admin_model')->addMahasiswa($_POST);
+        // var_dump($_POST);
+        // if ($this->model('Admin_model')->addMahasiswa($_POST) > 0) {
+        //     Flasher::setFlash('Berhasil', 'Menambah Data Mahasiswa !', 'success', 'admin');
+        //     header('Location: '. BASEURL .'/admin');
+        //     exit;
+        // }else {
+        //     Flasher::setFlash('Gagal', 'Menambah Data Mahasiswa !', 'danger', 'admin');
+        //     header('Location: '. BASEURL .'/admin');
+        //     exit;
+        // }
     }
 
 }
