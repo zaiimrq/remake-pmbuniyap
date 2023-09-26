@@ -60,17 +60,21 @@ class Admin extends Controller
 
     public function tambah()
     {
-        $this->model('Admin_model')->addMahasiswa($_POST);
         // var_dump($_POST);
-        // if ($this->model('Admin_model')->addMahasiswa($_POST) > 0) {
-        //     Flasher::setFlash('Berhasil', 'Menambah Data Mahasiswa !', 'success', 'admin');
-        //     header('Location: '. BASEURL .'/admin');
-        //     exit;
-        // }else {
-        //     Flasher::setFlash('Gagal', 'Menambah Data Mahasiswa !', 'danger', 'admin');
-        //     header('Location: '. BASEURL .'/admin');
-        //     exit;
-        // }
+        
+        $data['cama'] = $_POST;
+        $data['dokumen'] = $_FILES;
+        // $this->model('Admin_model')->addMahasiswa($data);
+
+        if ($this->model('Admin_model')->addMahasiswa($data) > 0) {
+            Flasher::setFlash('Berhasil', 'Menambah Data Mahasiswa !', 'success', 'admin');
+            header('Location: '. BASEURL .'/admin');
+            exit;
+        }else {
+            Flasher::setFlash('Gagal', 'Menambah Data Mahasiswa !', 'danger', 'admin');
+            header('Location: '. BASEURL .'/admin');
+            exit;
+        }
     }
 
 }

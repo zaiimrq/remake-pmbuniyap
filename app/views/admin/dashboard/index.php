@@ -76,39 +76,39 @@
       <div class="modal-body">
         <form action="<?= BASEURL ?>/admin/tambah" method="POST" enctype="multipart/form-data">
 
-          <div class="form-group">
+          <div class="form-group mb-3">
             <label for="noPendaftaran">Nomor Pendaftaran</label>
-            <input type="text" name="noPendaftaran" class="form-control" id="noPendaftaran" readonly>
+            <input type="text" name="no_pendaftar" class="form-control" id="noPendaftaran" readonly>
           </div>
 
-          <label>Password</label>
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="password" id="password" autocomplete="off">
+          <div class="form-group mb-3">
+            <label for="password">Password</label>
+            <input type="text" class="form-control" name="password" id="password">
           </div>
 
-          <label>NISN</label>
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="nisn" id="nisn" autocomplete="off">
+          <div class="form-group mb-3">
+            <label for="nisn">NISN</label>
+            <input type="text" class="form-control" name="nisn" id="nisn">
           </div>
 
-          <label>Nama</label>
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="nama" id="nama" autocomplete="off">
+          <div class="form-group mb-3">
+            <label for="nama">Nama</label>
+            <input type="text" class="form-control" name="nama" id="nama">
           </div>
 
-          <label>No Tlp</label>
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="tlp" id="tlp" autocomplete="off">
+          <div class="form-group mb-3">
+            <label for="tlp">No Tlp</label>
+            <input type="text" class="form-control" name="tlp" id="tlp">
           </div>
 
-          <label>Email</label>
-          <div class="form-floating mb-3">
-            <input type="email" class="form-control" name="email" id="email" autocomplete="off">
+          <div class="form-group mb-3">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" name="email" id="email">
           </div>
 
 
-          <label>Tahun Lulus</label>
-          <div class="form-floating mb-3">
+          <div class="form-group mb-3">
+            <label for="thn_lulus">Tahun Lulus</label>
             <input type="number" class="form-control" name="thn_lulus" id="thn_lulus" min="2012" max="2023" >
           </div>
 
@@ -129,16 +129,16 @@
 
             <br>
 
-          <label>Asal Sekolah</label>
-          <div class="form-floating mb-3">
-              <input type="text" class="form-control" name="asal" id="asal" autocomplete="off">
+          <div class="form-group mb-3">
+            <label for="asal">Asal Sekolah</label>
+            <input type="text" class="form-control" name="asal_sekolah" id="asal">
           </div>
 
           <br>
 
-          <label>Upload Dokumen</label>
-          <div class="form-floating mb-3">
-            <input type="file" name="dok" autocomplete="off">
+          <div class="form-group mb-3">
+            <label for="dokumen">Upload Dokumen</label>
+            <input type="file" class="form-control" name="dokumen" id="dokumen">
           </div>
 
           <br> 
