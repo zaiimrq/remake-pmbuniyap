@@ -36,16 +36,6 @@ class Dashboard extends Controller
     }
 
 
-    public function logout()
-    {
-        unset($_SESSION['login']);
-        session_unset();
-        session_destroy();
-        header('Location: '. BASEURL .'/');
-        exit;
-    }
-
-
     public function formulir()
     {
         
