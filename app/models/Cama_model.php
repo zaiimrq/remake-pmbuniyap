@@ -114,14 +114,14 @@ class Cama_model
         $this->db->bind('nisn', $data[1]);
         $submit = $this->db->get();
         
-        if (is_null($submit['is_submit'])) {
+        if (is_null($submit['is_submit']) || $this->db->getRow() == 0) {
             $dok = $data[0]['dokumen'];
             $query = "UPDATE dokumen SET dokumen=:dokumen, is_submit=1 WHERE nisn=:nisn";
             $this->db->query($query);
             $this->db->bind('dokumen', $dok['name']);
             $this->db->bind('nisn', $data[1]);
+            $this->db->execute();
     
-            var_dump($this->db->getRow());
         } else {
             return 'not';
         }

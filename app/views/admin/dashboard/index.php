@@ -47,10 +47,10 @@
                     <td><?= $mhs['asal_sekolah'] ?></td>
                     <td class="px-3">
                       <div class="d-flex justify-content-between align-items-center">
-                        <a class="btn btn-warning mx-1" id="editdata" data-bs-toggle="modal" data-bs-target="#addSM" data-nisn="<?= $mhs['nisn'] ?>">
+                        <a class="btn btn-warning mx-1 edit" data-bs-toggle="modal" data-bs-target="#addSM" data-nisn="<?= $mhs['nisn'] ?>">
                           <i class="fas fa-edit"></i>
                         </a>
-                        <a href="" class="btn btn-danger mx-1">
+                        <a href="<?= BASEURL ?>/admin/hapus/<?= $mhs['nisn'] ?>" class="btn btn-danger mx-1">
                           <i class="fas fa-trash"></i>
                         </a>
                       </div>
@@ -66,50 +66,49 @@
 
 <!-- modal -->
 
-<div class="modal fade" id="addSM" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addSM" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Tambah Data Mahasiswa</h5>
+        <h5 class="modal-title" id="modalLabel">Tambah Data Mahasiswa</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form action="<?= BASEURL ?>/admin/tambah" method="POST" enctype="multipart/form-data">
-
           <div class="form-group mb-3">
-            <label for="noPendaftaran">Nomor Pendaftaran</label>
-            <input type="text" name="no_pendaftar" class="form-control" id="noPendaftaran" readonly>
+            <label for="no_pendaftar">Nomor Pendaftaran</label>
+            <input type="text" name="no_pendaftar" class="form-control" id="no_pendaftar" readonly required>
           </div>
 
-          <div class="form-group mb-3">
+          <div class="form-group mb-3 pass">
             <label for="password">Password</label>
-            <input type="text" class="form-control" name="password" id="password">
+            <input type="text" class="form-control" name="password" id="password" required>
           </div>
 
           <div class="form-group mb-3">
             <label for="nisn">NISN</label>
-            <input type="text" class="form-control" name="nisn" id="nisn">
+            <input type="text" class="form-control" name="nisn" id="nisn" required>
           </div>
 
           <div class="form-group mb-3">
             <label for="nama">Nama</label>
-            <input type="text" class="form-control" name="nama" id="nama">
+            <input type="text" class="form-control" name="nama" id="nama" required>
           </div>
 
           <div class="form-group mb-3">
             <label for="tlp">No Tlp</label>
-            <input type="text" class="form-control" name="tlp" id="tlp">
+            <input type="text" class="form-control" name="tlp" id="tlp" required>
           </div>
 
           <div class="form-group mb-3">
             <label for="email">Email</label>
-            <input type="email" class="form-control" name="email" id="email">
+            <input type="email" class="form-control" name="email" id="email" required>
           </div>
 
 
           <div class="form-group mb-3">
             <label for="thn_lulus">Tahun Lulus</label>
-            <input type="number" class="form-control" name="thn_lulus" id="thn_lulus" min="2012" max="2023" >
+            <input type="number" class="form-control" name="thn_lulus" id="thn_lulus" min="2015" max="2025"  required>
           </div>
 
           <label for="jalur">Jalur Masuk</label>
@@ -121,7 +120,7 @@
             <br>
 
           <label for="prodi">Program Studi Pilihan</label>
-          <select name="kode_prodi" class="form-select">
+          <select name="kode_prodi" class="form-select" id="kode_prodi">
             <?php foreach ($data['prodi'] as $data): ?>
               <option value="<?= $data['kode_prodi'] ?>"><?= $data['prodi'] ?></option>
             <?php endforeach; ?>
@@ -131,7 +130,7 @@
 
           <div class="form-group mb-3">
             <label for="asal">Asal Sekolah</label>
-            <input type="text" class="form-control" name="asal_sekolah" id="asal">
+            <input type="text" class="form-control" name="asal_sekolah" id="asal" required>
           </div>
 
           <br>
@@ -152,3 +151,4 @@
     </div>
   </div>
 </div>
+

@@ -27,7 +27,7 @@ class Admin_model
 
     public function getAllMahasiswa()
     {
-        $this->db->query("SELECT cama.*, pendaftaran.no_pendaftar FROM cama JOIN pendaftaran ON cama.nisn = pendaftaran.nisn");
+        $this->db->query("SELECT cama.*, pendaftaran.no_pendaftar FROM cama JOIN pendaftaran ON cama.nisn = pendaftaran.nisn ORDER BY cama.nama ASC");
         return $this->db->getAll();
     }
 
@@ -66,20 +66,87 @@ class Admin_model
             if (isset($dokumen)) {
                 $tmp = $dokumen['tmp_name'];
                 $name = $dokumen['name'];
-                $error = $dokumen['error'];
 
-                if ($error == 0) {
-                    $this->db->query("INSERT INTO dokumen SET nisn=:nisn, dokumen=:dokumen, is_submit=1");
-                    $this->db->bind('nisn', $cama['nisn']);
-                    $this->db->bind('dokumen', $name);
-                    if ($this->db->getRow() > 0) {
-                        $path = $cama['nisn']. '-' .$cama['nama'];
-                        move_uploaded_file($tmp, '../app/storage/'. $path);
-                    }
+                $this->db->query("INSERT INTO dokumen SET nisn=:nisn, dokumen=:dokumen");
+                $this->db->bind('nisn', $cama['nisn']);
+                $this->db->bind('dokumen', $name);
+                if ($this->db->getRow() > 0) {
+                    $path = $cama['nisn']. '-' .$cama['nama']. '.pdf';
+                    move_uploaded_file($tmp, '../app/storage/'. $path);
                 }
             }
         }
-        // var_dump($this->db->getRow());
         return 1;
+    }
+
+    public function hapus($nisn)
+    {
+        $this->db->query("DELETE FROM cama WHERE nisn=:nisn");
+        $this->db->bind('nisn', $nisn);
+        if ($this->db->getRow() > 0) {
+            $path = '../app/storage/'. $nisn .'-*';
+
+            $file = glob($path);
+
+            foreach ($file as $f) {
+                if (is_file($f)) {
+                    unlink($f);
+                }
+            }
+        }
+
+        return 1;
+    }
+
+
+    public function getUbah($nisn)
+    {
+        $this->db->query("SELECT cama.*, pendaftaran.no_pendaftar FROM cama JOIN pendaftaran ON cama.nisn = pendaftaran.nisn WHERE cama.nisn = :nisn");
+        $this->db->bind('nisn', $nisn);
+        return $this->db->get();
+    }
+
+    public function ubah($data)
+    {
+        var_dump($data[1]);
+        $this->db->query("UPDATE cama SET 
+                        nisn=:nisn,
+                        kode_prodi=:kode_prodi,
+                        nama=:nama,
+                        email=:email,
+                        thn_lulus=:thn_lulus,
+                        jalur_masuk=:jalur_masuk,
+                        no_hp=:no_hp,
+                        asal_sekolah=:asal_sekolah
+                        WHERE nisn=:nisn");
+
+        $this->db->bind('nisn', $data[0]['nisn']);
+        $this->db->bind('kode_prodi', $data[0]['kode_prodi']);
+        $this->db->bind('nama', $data[0]['nama']);
+        $this->db->bind('email', $data[0]['email']);
+        $this->db->bind('thn_lulus', $data[0]['thn_lulus']);
+        $this->db->bind('jalur_masuk', $data[0]['jalur_masuk']);
+        $this->db->bind('no_hp', $data[0]['tlp']);
+        $this->db->bind('asal_sekolah', $data[0]['asal_sekolah']);
+
+
+        if ($this->db->getRow() > 0) {
+            if (isset($data[1]['dokumen'])) {
+                $dokumen = $data[1]['dokumen'];
+                $tmp = $dokumen['tmp_name'];
+                $name = $dokumen['name'];
+
+                $this->db->query("UPDATE dokumen SET dokumen=:dokumen WHERE nisn=:nisn");
+                $this->db->bind('nisn', $data[0]['nisn']);
+                $this->db->bind('dokumen', $name);
+                if ($this->db->getRow() > 0) {
+                    $path = $data[0]['nisn']. '-' .$data[0]['nama']. '.pdf';
+                    move_uploaded_file($tmp, '../app/storage/'. $path);
+                }
+            }
+
+            return 1;
+        }
+
     }
 }

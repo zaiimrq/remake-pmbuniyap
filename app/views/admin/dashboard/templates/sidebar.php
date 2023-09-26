@@ -18,7 +18,7 @@
 
           <ul class="nav flex-column mb-auto">
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="#">
+              <a class="nav-link d-flex align-items-center gap-2" href="<?= BASEURL ?>/home/logout">
               <i class="fa-solid fa-arrow-right-from-bracket"></i>
                 Logout
               </a>

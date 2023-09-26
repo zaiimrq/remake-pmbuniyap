@@ -22,7 +22,7 @@
                 <a class="nav-link" href="<?= BASEURL ?>/dashboard/pengumuman/">Pengumuman</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="<?= BASEURL ?>/dashboard/logout" onclick="return confirm('Apakah Anda yakin ingin logout?')"><i class="fas fa-sign-out-alt fa-lg"></i> Logout</a>
+                <a class="nav-link" href="<?= BASEURL ?>/home/logout" onclick="return confirm('Apakah Anda yakin ingin logout?')"><i class="fas fa-sign-out-alt fa-lg"></i> Logout</a>
               </li>
           </ul>
     </div>
