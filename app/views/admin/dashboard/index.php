@@ -8,7 +8,7 @@
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <h2 class="mt-3">Daftar Mahasiswa</h2>
-        <button type="button" class="btn btn-success" id="tambahDataBtn" data-bs-toggle="modal" data-bs-target="#addSM" style="margin-bottom: 10px;width: 200px;">
+      <button type="button" class="btn btn-success" id="tambahDataBtn" data-bs-toggle="modal" data-bs-target="#addSM" style="margin-bottom: 10px;width: 200px;">
         Tambah Data
       </button>
       <div class="row">
@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="table-responsive">
-        <table id="tabelsm" class="table table-striped" style="width:100%; text-align: center;">
+        <table id="tabelMahasiswa" class="table table-striped" style="width:100%; text-align: center;">
               <thead>
                   <tr>
                       <th>No</th>
@@ -151,4 +151,29 @@
     </div>
   </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+
+      function generateNoPendaftaran() {
+          var currentDate = new Date();
+          var year = currentDate.getFullYear().toString();
+          var randomDigits = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+
+          var noPendaftaran = year + randomDigits;
+          return noPendaftaran;
+      }
+
+      // Setel nilai nomor pendaftaran saat halaman dimuat
+      window.onload = function() {
+          var noPendaftaranInput = document.getElementById('no_pendaftar');
+          noPendaftaranInput.value = generateNoPendaftaran();
+      };
+</script>
+<?php require_once('templates/admin_ajax.php') ?>
+
+
+
+
+
+
 

@@ -18,7 +18,7 @@ class Cama_model
 
     public function getProdi()
     {
-        $this->db->query("SELECT * FROM prog_studi");
+        $this->db->query("SELECT * FROM prog_studi ORDER BY prodi");
         return $this->db->getAll();
     }
 

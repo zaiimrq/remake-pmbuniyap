@@ -112,4 +112,60 @@ class Admin extends Controller
         }
     }
 
+
+    // halaman prodi admin
+
+
+    public function prodi()
+    {
+        $data = $this->model('Cama_model')->getProdi();
+
+        $this->view('admin/dashboard/templates/header');
+        $this->view('admin/dashboard/prodi', $data);
+        $this->view('admin/dashboard/templates/footer');
+    }
+
+    public function addProdi()
+    {
+        if ($this->model('Admin_prodi_model')->addProdi($_POST) > 0) {
+            Flasher::setFlash('Berhasil', 'Menambah Program Studi !', 'success', 'admin/prodi');
+            header('Location: '. BASEURL .'/admin/prodi');
+            exit;
+        }else {
+            Flasher::setFlash('Gagal', 'Menambah Program Studi !', 'danger', 'admin/prodi');
+            header('Location: '. BASEURL .'/admin/prodi');
+            exit;
+        }
+    }
+
+    public function deleteProdi($kode_prodi)
+    {
+        if ($this->model('Admin_prodi_model')->deleteProdi($kode_prodi) > 0) {
+            Flasher::setFlash('Berhasil', 'Menghapus Program Studi !', 'success', 'admin/prodi');
+            header('Location: '. BASEURL .'/admin/prodi');
+            exit;
+        }else {
+            Flasher::setFlash('Gagal', 'Menghapus Program Studi !', 'danger', 'admin/prodi');
+            header('Location: '. BASEURL .'/admin/prodi');
+            exit;
+        }
+    }
+
+    public function getEditProdi()
+    {
+        echo json_encode($this->model('Admin_prodi_model')->getEditProdi($_POST['kode']));
+    }
+
+    public function editProdi()
+    {
+        if ($this->model('Admin_prodi_model')->editProdi($_POST)) {
+            Flasher::setFlash('Berhasil', 'Edit Program Studi !', 'success', 'admin/prodi');
+            header('Location: '. BASEURL .'/admin/prodi');
+            exit;
+        }else {
+            Flasher::setFlash('Gagal', 'Edit Program Studi !', 'danger', 'admin/prodi');
+            header('Location: '. BASEURL .'/admin/prodi');
+            exit;
+        }
+    }
 }
