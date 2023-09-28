@@ -52,6 +52,6 @@ class Admin_prodi_model
         $this->db->bind('fakultas', $data['fakultas']);
         $this->db->bind('akreditasi', $data['akreditasi']);
 
-        return true;
+        return $this->db->getRow();
     }
 }

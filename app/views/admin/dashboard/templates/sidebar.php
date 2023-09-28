@@ -18,6 +18,23 @@
                 Program Studi
               </a>
             </li>
+              <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="<?= BASEURL ?>/admin/jadwal">
+                <i class="fa-solid fa-square-poll-horizontal"></i>
+                Jadwal
+              </a>
+            </li>
+            </li>
+              <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="<?= BASEURL ?>/admin/dokumen">
+                <i class="fa-solid fa-square-poll-horizontal"></i>
+                Dokumen
+              </a>
+            </li>
+            </li>
+              <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="<?= BASEURL ?>/admin/seleksi">
+                <i class="fa-solid fa-square-poll-horizontal"></i>
+                Hasil Seleksi
+              </a>
+            </li>
           </ul>
 
           <hr class="my-3">

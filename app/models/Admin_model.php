@@ -84,7 +84,7 @@ class Admin_model
         $this->db->query("DELETE FROM cama WHERE nisn=:nisn");
         $this->db->bind('nisn', $nisn);
         if ($this->db->getRow() > 0) {
-            $path = '../app/storage/'. $nisn .'-*';
+            $path = 'storage/'. $nisn .'-*';
 
             $file = glob($path);
 
@@ -108,7 +108,6 @@ class Admin_model
 
     public function ubah($data)
     {
-        var_dump($data[1]);
         $this->db->query("UPDATE cama SET 
                         nisn=:nisn,
                         kode_prodi=:kode_prodi,
@@ -141,12 +140,18 @@ class Admin_model
                 $this->db->bind('dokumen', $name);
                 if ($this->db->getRow() > 0) {
                     $path = $data[0]['nisn']. '-' .$data[0]['nama']. '.pdf';
-                    move_uploaded_file($tmp, '../app/storage/'. $path);
+                    move_uploaded_file($tmp, 'storage/'. $path);
                 }
             }
 
             return 1;
         }
 
+    }
+
+    public function getAllDokumen()
+    {
+        $this->db->query("SELECT dokumen.*, cama.nama FROM dokumen JOIN cama ON dokumen.nisn = cama.nisn");
+        return $this->db->getAll();
     }
 }

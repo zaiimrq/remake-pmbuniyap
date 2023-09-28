@@ -15,12 +15,12 @@
                 <table id="tabelsm" class="table table-striped" style="width:100%; text-align: center;">
                     <thead>
                         <tr>
-                            <th>No</th>
-                            <th>Kode</th>
-                            <th>Nama Program Studi</th>
-                            <th>Fakultas</th>
-                            <th>Akreditasi</th>
-                            <th>Aksi</th>
+                            <th class="text-center">No</th>
+                            <th class="text-center">Kode</th>
+                            <th class="text-center">Nama Program Studi</th>
+                            <th class="text-center">Fakultas</th>
+                            <th class="text-center">Akreditasi</th>
+                            <th class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,8 +32,10 @@
                             <td><?= $prodi['prodi'] ?></td>
                             <td><?= $prodi['fakultas'] ?></td>
                             <td><?= $prodi['akreditasi'] ?></td>
-                            <td> <a class="btn btn-warning btn-sm editdata" data-bs-toggle="modal" data-bs-target="#addSM" data-kode="<?= $prodi['kode_prodi'] ?>" ><i class="fas fa-edit"></i></a>
-                            <a href="<?= BASEURL ?>/admin/deleteProdi/<?= $prodi['kode_prodi'];?>" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a></td>
+                            <td class="px-3">
+                                <a class="btn btn-warning btn-sm editdata" data-bs-toggle="modal" data-bs-target="#addSM" data-kode="<?= $prodi['kode_prodi'] ?>" ><i class="fas fa-edit"></i></a>
+                                <a href="<?= BASEURL ?>/admin/deleteProdi/<?= $prodi['kode_prodi'];?>" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                            </td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>

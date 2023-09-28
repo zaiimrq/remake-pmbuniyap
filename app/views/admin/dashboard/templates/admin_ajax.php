@@ -1,21 +1,8 @@
 
 <script>
         $(function () {
-          $('#tambahDataBtn').click(function () {
-            $('#modalLabel').html('Tambah Data Mahasiswa')
-            $('.modal-footer button[type="submit"]').html('Submit')
-            $('.modal-body form').attr('action', '<?= BASEURL ?>/admin/tambah');
-            $('#no_pendaftar').val(generateNoPendaftaran())
-            $('#nisn').val('')
-            $('#nama').val('')
-            $('#email').val('')
-            $('#tlp').val('')
-            $('#thn_lulus').val('')
-            $('#jalur_masuk').val('')
-            $('#kode_prodi').val('')
-            $('#asal').val('')
-            $('.pass').append(`<label for="password">Password</label>
-            <input type="text" class="form-control" name="password" id="password" required>`)
+          $('#addSM').on('hidden.bs.modal', function () {
+            location.reload()
           })
 
           $('.edit').click(function (){

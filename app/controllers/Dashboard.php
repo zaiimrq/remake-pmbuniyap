@@ -77,7 +77,7 @@ class Dashboard extends Controller
                 if ($this->model('Cama_model')->upload([$_FILES, $nisn]) > 0) {
                     $dokName = $_FILES['dokumen']['name'];
                     $dokName = $nisn . '-' . $dokName;
-                    move_uploaded_file($_FILES['dokumen']['tmp_name'], "../app/storage/". $dokName);
+                    move_uploaded_file($_FILES['dokumen']['tmp_name'], 'storage/'. $dokName);
                     Flasher::setFlash('Berhasil', 'Dokumen Anda Telah Di Upload !', 'success', 'dashboard');
                     header('Location: '. BASEURL .'/dashboard');
                     exit;
